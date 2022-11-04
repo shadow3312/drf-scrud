@@ -48,7 +48,7 @@ pip install drf-scrud
         def __init__(self):
             super().__init__(models.Book, serializers.BookSerializer, self.permission_classes_by_action)
     ```
-> When defining your Viewset this way, BookViewset inherit these methods: list, create, get, edit, delete, activate, deactivate, search
+> When defining your Viewset this way, BookViewset inherit these methods: ```list```, ```create```, ```get```, ```edit```, ```delete```, ```activate```, ```deactivate```, ```search```
 
 3. Then, in ```urls.py``` you can set:
 ```python
