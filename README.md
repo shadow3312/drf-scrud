@@ -115,7 +115,7 @@ Considering a model represented by this json
             "name": "Sydney",
             "country": {
                 "id": 2,
-                "name": Australia"
+                "name": "Australia"
             }
         }
     } 
