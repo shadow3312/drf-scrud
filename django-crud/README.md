@@ -6,18 +6,18 @@ DRF SCRUD (emphasizes on the S, you'll discover why) Viewset is a lightweight Dj
 
 - Create, Read, Update and Delete ready-to-go methods for viewsets
 - FileUploadParser enabled for create and edit methods to allow uploading files and images
-- Powerful search feature (all its greatness described [bellow](#the-search-feature) )
+- Powerful search feature (all its greatness described [bellow](#the-search-action) )
 - Toggle status of instances (if ```is_active``` field on model)
 - Paginated responses
 
-#### Install
+### Install
 
 ```bash 
 pip install drf-scrud
 ```
     
 
-#### Quick Start
+### Quick Start
 
 1. Add ```scrud``` to your ```INSTALLED_APPS``` like this:
     ```python
@@ -33,7 +33,8 @@ pip install drf-scrud
     from . import models, serializers
     
     class BookViewset(ScrudViewset)
-        # Override the default permissions by action if needed
+        # Override the default permissions by action if needed. Default is AllowAny for all actions.
+        
         permission_classes_by_action = {
             'create': [IsAuthenticated],
             'list': [IsAuthenticated],
@@ -48,7 +49,7 @@ pip install drf-scrud
         def __init__(self):
             super().__init__(models.Book, serializers.BookSerializer, self.permission_classes_by_action)
     ```
-> When defining your Viewset this way, BookViewset inherit these methods: list, create, get, edit, delete, activate, deactivate, search
+> When defining your Viewset this way, BookViewset inherit these methods: ```list```, ```create```, ```get```, ```edit```, ```delete```, ```activate```, ```deactivate```, ```search```
 
 3. Then, in ```urls.py``` you can set:
 ```python
@@ -75,7 +76,7 @@ REST_FRAMEWORK = {
 
 5. You are done ! All the endpoints should be working fine by now.
 
-#### Especialy for the 'inactives()' action
+### Especialy for the 'inactives()' action
 
 This action make use of a customized manager that binds ```active_rows()``` and ```inactive_rows()``` to model.objects, like ```Book.objects.inactive_rows()```
 
@@ -90,7 +91,7 @@ class BookModel(models.Model):
 ```
 
 
-#### The Search Action
+### The Search Action
 This action implements advanced query filtering throught model instances to help you improve your API.
 ```http
 https://YOUR_API_ENDPOINT/search/?field_name=value
@@ -115,7 +116,7 @@ Considering a model represented by this json
             "name": "Sydney",
             "country": {
                 "id": 2,
-                "name": Australia"
+                "name": "Australia"
             }
         }
     } 
@@ -130,7 +131,7 @@ or
 
 > String fields are double-quoted
 
-- ##### Even better
+- #### Even better
     You can lookup throughout related models
 
     ```/search/?author__city__country_name="Aus" ```
@@ -139,7 +140,7 @@ or
 
     > String field lookups are case insensitive and perform a like %% sql query
 
-#### Overriding a method
+### Overriding a method
 You can override any of the pre-built method.
 
 - e.g adding decorator

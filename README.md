@@ -33,7 +33,8 @@ pip install drf-scrud
     from . import models, serializers
     
     class BookViewset(ScrudViewset)
-        # Override the default permissions by action if needed
+        # Override the default permissions by action if needed. Default is AllowAny for all actions.
+        
         permission_classes_by_action = {
             'create': [IsAuthenticated],
             'list': [IsAuthenticated],
