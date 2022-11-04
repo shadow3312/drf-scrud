@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: drf-crud
+Version: 1.0
+Summary: Django Rest Framework crud viewset.
+Home-page: shuruzer.vercel.app
+Author: Shuruzer
+Author-email: eludeceti@gmail.com
+Maintainer: Shuruzer
+Maintainer-email: eludeceti@gmail.com
+License: MIT
+Keywords: django drf crud drf-crud custom viewset
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI  Approved :: MIT License
+Classifier: Operating System :: OS Independant
+Classifier: Progamming Language :: Python :: 3
+Classifier: Progamming Language :: Python :: 3 :: only
+Classifier: Progamming Language :: Python :: 3 :: 3.5
+Classifier: Progamming Language :: Python :: 3 :: 3.6
+Classifier: Progamming Language :: Python :: 3 :: 3.7
+Classifier: Progamming Language :: Python :: 3 :: 3.8
+Classifier: Progamming Language :: Python :: 3 :: 3.9
+Classifier: Progamming Language :: Python :: 3 :: 3.10
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+License-File: LICENSE

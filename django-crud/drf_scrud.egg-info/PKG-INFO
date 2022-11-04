@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: drf-scrud
+Version: 3.0
+Summary: Django Rest Framework SCRUD viewset.
+Home-page: https://shuruzer.vercel.app
+Author: Shuruzer
+Author-email: eludeceti@gmail.com
+Maintainer: Shuruzer
+Maintainer-email: eludeceti@gmail.com
+License: MIT
+Keywords: django drf crud drf-crud custom viewset
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+## DRF SCRUD Viewset
+
+DRF SCRUD Viewset is a lightweight Django package built on top of django-rest-framework. A highly abstracted global viewset thats provides common CRUD operations methods including advanced search and pagination.
+
+### Features
+    - Create, Read, Update and Delete ready-to-go methods for viewsets
+    - FileUploadParser enabled for create and edit methods to allow uploading files and images
+    - Powerful search feature (all its greatness detailed bellow)
+    - Toggle status of instances (if is_active field on model)
+    - Paginated responses
+    
+
+### Quick Start
+
+1. Add "scrud" to your INSTALLED_APPS like this::
+    INSTALLED_APPS = [
+        ...
+        'scrud',  
+    ] 
+;
+2. Use in views.py:
+    ```python
+    
+    from scrud import ScrudViewset
+
+    
+    class BookViewset(ScrudViewset)
+        def __init__(self):
+        super().__init__(models.Book, serializers.BookSerializer)
+    ```
+> When defining your Viewset this way, BookViewset inherit these methods: list, create, get, edit, delete, activate, deactivate, search
+
+3. Then, in urls.py you can set:
+```python
+    path('book/', include([
+        path('', views.BookViewset.as_view({'get': 'list', 'post': 'create'})),
+        path('<int:pk>/', views.BookViewset.as_view({'get': 'get'})),
+        path('<int:pk>/edit/', views.BookViewset.as_view({'put': 'edit'})),
+        path('<int:pk>/delete/', views.BookViewset.as_view({'delete': 'delete'})),
+        path('search/', views.BookViewset.as_view({'get': 'search'})),
+        path('max_rows=<int:size>/', views.BookViewset.as_view({'get': 'page'})),
+    ])),
+        
+```
